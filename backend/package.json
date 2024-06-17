@@ -1,13 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "backend of todolist-app-sheba",
+  "description": "backend for todolist-app-sheba",
   "main": "app.js",
+  "repository": "git@github.com:Fardin96/alshams-orderNinventory-management.git",
+  "author": "Fardin96 <fardinshuvro96@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -15,6 +17,9 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.3"
   }
 }
