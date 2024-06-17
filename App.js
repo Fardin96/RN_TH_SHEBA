@@ -8,7 +8,7 @@ const App = () => {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        // backgroundColor: 'white',
       }}>
       <Text style={{color: 'black'}}>sheba group</Text>
     </View>

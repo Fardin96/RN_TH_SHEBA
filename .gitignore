@@ -72,3 +72,12 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# node.js
+# backend
+backend/node_modules/
+
+# env files
+backend/.env
+
+
