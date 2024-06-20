@@ -59,15 +59,15 @@ export const digitValidation = input => {
 
 export const registerFormValidation = (input, setErr) => {
   // user name validation
-  if (!nameValidation(input.first_name)) {
+  if (!nameValidation(input.name)) {
     setErr('Please enter valid name and password');
     return false;
   }
 
-  if (!nameValidation(input.last_name)) {
-    setErr('Please enter valid name and password');
-    return false;
-  }
+  // if (!nameValidation(input.last_name)) {
+  //   setErr('Please enter valid name and password');
+  //   return false;
+  // }
 
   // email validation
   if (!emailValidation(input.email)) {

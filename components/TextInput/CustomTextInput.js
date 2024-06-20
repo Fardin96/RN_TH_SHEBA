@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 // assets
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/fonts/fonts';
+import {FontSize} from '../../assets/fonts';
 
 const CustomTextInput = ({
   refProp,
@@ -51,7 +51,7 @@ const CustomTextInput = ({
       marginHorizontal: convert(25),
       borderRadius: convert(100),
       color: colors.dark.CONTRAST,
-      fontFamily: 'Montserrat-Light',
+      // fontFamily: 'Montserrat-Light',
 
       // borderWidth: 1,
       // borderColor: 'blue',
@@ -61,7 +61,7 @@ const CustomTextInput = ({
         width: convert(700),
       },
       txt: {
-        fontFamily: 'Montserrat-Regular',
+        // fontFamily: 'Montserrat-Regular',
         marginTop: convert(5),
         marginBottom: convert(-30),
         fontSize: FontSize.hint,
@@ -88,7 +88,6 @@ const CustomTextInput = ({
         ref={refProp}
         value={value ? `${value}` : null}
         defaultValue={defaultValue ? `${defaultValue}` : null}
-        // onPressIn={() => console.log('first')}
         inputStyle={styles.inputStyle}
         placeholder={`${placeholder}`}
         maxLength={maxLength}

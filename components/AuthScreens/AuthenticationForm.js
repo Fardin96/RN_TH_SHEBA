@@ -10,10 +10,11 @@ import {Button} from 'react-native-elements';
 // assets
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/fonts/fonts';
-import CustomTextInput from '../TextInput/CustomTextInput';
-import {APP_NAME} from '../../assets/texts/staticText';
+import {FontSize} from '../../assets/fonts';
+import {APP_NAME} from '../../assets/texts/StaticText';
 import {Image} from 'react-native';
+// component
+import CustomTextInput from '../TextInput/CustomTextInput';
 
 const AuthenticationForm = ({
   errorMessage,
@@ -165,7 +166,7 @@ const AuthenticationForm = ({
     },
   });
 
-  const firstNameRef = useRef(null);
+  const nameRef = useRef(null);
   const lastNameRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
@@ -190,24 +191,24 @@ const AuthenticationForm = ({
     }
 
     if (title === 'Register') {
-      firstNameRef.current.focus();
+      nameRef.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = () => {
-    const firstName = firstNameRef.current?.value;
-    const lastName = lastNameRef.current?.value;
+    const name = nameRef.current?.value;
+    // const lastName = lastNameRef.current?.value;
     const password = passwordRef.current?.value;
     const confirmPassword = confirmPasswordRef.current?.value;
     const email = emailRef.current?.value;
 
     const newUserData = {
       email: email,
-      password1: password,
-      password2: confirmPassword,
-      first_name: firstName,
-      last_name: lastName,
+      password: password,
+      confirmPassword: confirmPassword,
+      name: name,
+      // last_name: lastName,
     };
 
     // console.log('new user data: ', newUserData);
@@ -230,7 +231,7 @@ const AuthenticationForm = ({
       showsVerticalScrollIndicator={false}>
       <View style={styles.logo.container}>
         <Image
-          source={require('../../assets/images/tazkiah-logo.png')}
+          source={require('../../assets/images/sheba_logo.png')}
           resizeMode="contain"
           style={styles.logo.img}
         />
@@ -242,19 +243,19 @@ const AuthenticationForm = ({
         {title === 'Register' ? (
           <>
             <CustomTextInput
-              refProp={firstNameRef}
-              placeholder="First Name"
+              refProp={nameRef}
+              placeholder="Name"
               maxLength={20}
               errorStyle={styles.error}
               errorMessage={errorMessage ? errorMessage : ''}
             />
-            <CustomTextInput
+            {/* <CustomTextInput
               refProp={lastNameRef}
               placeholder="Last Name"
               maxLength={20}
               errorStyle={styles.error}
               errorMessage={errorMessage ? errorMessage : ''}
-            />
+            /> */}
           </>
         ) : (
           <></>
@@ -269,13 +270,13 @@ const AuthenticationForm = ({
           hint={'*case-sensitive'}
         />
 
-        <View style={styles.bg.container}>
+        {/* <View style={styles.bg.container}>
           <Image
             source={require('../../assets/images/auth-bg.png')}
             style={styles.bg.img}
             resizeMode="contain"
           />
-        </View>
+        </View> */}
 
         <CustomTextInput
           defaultValue="something1"
@@ -296,7 +297,7 @@ const AuthenticationForm = ({
             refProp={confirmPasswordRef}
             hidden={hidden2}
             rightIcon={true}
-            placeholder={'Password'}
+            placeholder={'Confirm Password'}
             maxLength={32}
             eyePressHandler={eyePressHandler2}
             errorStyle={styles.error}

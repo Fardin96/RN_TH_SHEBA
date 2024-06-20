@@ -76,13 +76,13 @@ const RequestNewPassword = () => {
         errorStyle={styles.error}
       />
 
-      <View style={styles.bg.container}>
+      {/* <View style={styles.bg.container}>
         <Image
           source={require('../../../assets/images/auth-bg.png')}
           style={styles.bg.img}
           resizeMode="contain"
         />
-      </View>
+      </View> */}
 
       {err !== '' ? (
         <View style={styles.err.errContainer}>

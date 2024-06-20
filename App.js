@@ -41,7 +41,7 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer
-      linking={linking}
+      // linking={linking}
       fallback={
         <View
           style={{
@@ -62,13 +62,13 @@ const App = () => {
           /> */}
           <Stack.Screen
             options={{headerShown: false}}
-            name="Login"
-            component={Login}
+            name="Register"
+            component={Register}
           />
           <Stack.Screen
             options={{headerShown: false}}
-            name="Register"
-            component={Register}
+            name="Login"
+            component={Login}
           />
           {/* <Stack.Screen
             options={{headerShown: false}}

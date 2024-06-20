@@ -36,13 +36,13 @@ const Login = ({navigation}) => {
   const onSubmit = async input => {
     // console.log('screen: login: input ->', input);
 
-    // handle wrong input
-    if (!loginFormValidation(input, setErr)) {
-      //! todo: uncomment!
-      return;
-    } else {
-      setErr('');
-    }
+    // form validation
+    // if (!loginFormValidation(input, setErr)) {
+    //   //! todo: uncomment!
+    //   return;
+    // } else {
+    //   setErr('');
+    // }
 
     //! todo: uncomment!
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
@@ -63,12 +63,11 @@ const Login = ({navigation}) => {
         setErr(error);
       }
 
-      if (response.data) {
-        if (response.data.access_token) {
-          // console.log('token? :', response.data.access_token);
-          disptach(setAuthToken(response.data.access_token));
-          navigation.navigate('Home');
-        }
+      if (response.data && response.data.token) {
+        // console.log('token? :', response.data.access_token);
+        disptach(setAuthToken(response.data.token));
+        console.log('login successful');
+        // navigation.navigate('Home');
       }
 
       // console.log('LOGIN: RESPONSE: ', response);

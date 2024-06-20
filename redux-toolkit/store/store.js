@@ -18,27 +18,27 @@ export const store = configureStore({
     [authSlice.reducerPath]: authSlice.reducer,
     authToken: authTokenReducer,
     // hijri-date
-    [arabicDateSlice.reducerPath]: arabicDateSlice.reducer,
-    arabicDate: arabicDateReducer,
+    // [arabicDateSlice.reducerPath]: arabicDateSlice.reducer,
+    // arabicDate: arabicDateReducer,
     // salah-checklist
-    [salahChecklistSlice.reducerPath]: salahChecklistSlice.reducer,
-    salahInfo: salahInfoReducer,
+    // [salahChecklistSlice.reducerPath]: salahChecklistSlice.reducer,
+    // salahInfo: salahInfoReducer,
     // recitation-info
-    [recitationInfoSlice.reducerPath]: recitationInfoSlice.reducer,
+    // [recitationInfoSlice.reducerPath]: recitationInfoSlice.reducer,
     // daily-todolist-slice
-    [dailyTodolistSlice.reducerPath]: dailyTodolistSlice.reducer,
+    // [dailyTodolistSlice.reducerPath]: dailyTodolistSlice.reducer,
     // todo: check if this is correct
     // todolistInfo: todolistInfo,
     // dua-slice
-    [duaSlice.reducerPath]: duaSlice.reducer,
+    // [duaSlice.reducerPath]: duaSlice.reducer,
   },
   middleware: getDefaultMiddhleware => [
     ...getDefaultMiddhleware(),
     authSlice.middleware,
-    arabicDateSlice.middleware,
-    salahChecklistSlice.middleware,
-    recitationInfoSlice.middleware,
+    // arabicDateSlice.middleware,
+    // salahChecklistSlice.middleware,
+    // recitationInfoSlice.middleware,
     dailyTodolistSlice.middleware,
-    duaSlice.middleware,
+    // duaSlice.middleware,
   ],
 });

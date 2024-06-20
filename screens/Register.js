@@ -25,18 +25,16 @@ const Register = ({navigation}) => {
 
   // todo: pref: 1. useMemo, useCallback, lazy loading
   // remove console.logs -> use lib
-  // profiling -> flipper, rn-debugger
-  // check if using hermes
   const onSubmit = async input => {
     // console.log('screen: register: input ->', input);
 
-    // handle wrong input
-    if (!registerFormValidation(input, setErr)) {
-      //! todo: uncomment
-      return;
-    } else {
-      setErr('');
-    }
+    // form validation
+    // if (!registerFormValidation(input, setErr)) {
+    //   //! todo: uncomment
+    //   return;
+    // } else {
+    //   setErr('');
+    // }
 
     // todo: cache to asyncStorage -> clear on logout!
     //! todo: uncomment
@@ -51,12 +49,14 @@ const Register = ({navigation}) => {
         return;
       }
 
-      if (response?.data) {
-        if (
-          response.data.message === 'Registration successful. Please login.'
-        ) {
-          navigation.navigate('Login');
-        }
+      if (response?.data && response.data.token) {
+        console.log('login successful: msg:', response.data);
+
+        // if (
+        //   response.data.message === 'Registration successful. Please login.'
+        // ) {
+        navigation.navigate('Login');
+        // }
       }
 
       // console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);

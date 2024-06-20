@@ -4,7 +4,8 @@ import {API_URL} from '@env';
 export const dailyTodolistSlice = createApi({
   reducerPath: 'daily-todolist-slice',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
+    // baseUrl: API_URL,
+    baseUrl: '127.0.0.1:9876',
     prepareHeaders: (headers, {getState}) => {
       const authToken = getState().authToken.value;
 
@@ -12,7 +13,7 @@ export const dailyTodolistSlice = createApi({
       //* {"authorization": `Bearer ${authToken}`}
       headers.set('authorization', `Bearer ${authToken}`);
 
-      // console.log('RECITATION INFO SLICE: headers: ', headers);
+      console.log('RECITATION INFO SLICE: headers: ', headers);
 
       return headers;
     },

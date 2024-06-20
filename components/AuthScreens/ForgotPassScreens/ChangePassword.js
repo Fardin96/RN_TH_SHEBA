@@ -86,13 +86,13 @@ const ChangePassword = () => {
 
   return (
     <View style={styles.root}>
-      <View style={styles.bg.container}>
+      {/* <View style={styles.bg.container}>
         <Image
           source={require('../../../assets/images/auth-bg.png')}
           style={styles.bg.img}
           resizeMode="contain"
         />
-      </View>
+      </View> */}
 
       <CustomTextInput
         defaultValue="something1"
