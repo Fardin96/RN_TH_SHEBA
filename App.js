@@ -7,7 +7,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {Text, View} from 'react-native';
@@ -23,6 +23,10 @@ import Home from './screens/Home';
 import {store} from './redux-toolkit/store/store';
 // assets
 import {colors} from './assets/colors/colors';
+import {API_URL} from '@env';
+// functions
+import {getLocalCache} from './functions/Cache/cache';
+import {getAuthToken} from './redux-toolkit/features/authentication/authToken';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,12 +39,51 @@ const Stack = createNativeStackNavigator();
 //   },
 // };
 
-import {API_URL} from '@env';
-console.log('+--------------------------------------------+');
-console.log('API_URL --> ', API_URL);
-console.log('+--------------------------------------------+');
+// console.log('+--------------------------------------------+');
+// console.log('API_URL --> ', API_URL);
+// console.log('+--------------------------------------------+');
 
 const App = () => {
+  const [cachedToken, setCachedToken] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCache = async () => {
+      try {
+        const token = await getAuthToken();
+        if (token) {
+          setCachedToken(token);
+        }
+        // console.log('cached token @app.js:', cachedToken);
+      } catch (error) {
+        console.error('Error fetching local cache @app.js:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCache();
+  }, []);
+
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: colors.dark.PRIMARY,
+        }}>
+        <Text style={{color: 'white'}}>Loading...</Text>
+      </View>
+    );
+  }
+
+  // console.log('+--------------------------------------------+');
+  // // const localCache = getAuthToken();
+  // console.log('TOKEN CACHE @app.js==> ', cachedToken);
+  // console.log('+--------------------------------------------+');
+
   return (
     <NavigationContainer
       // linking={linking}
@@ -60,16 +103,19 @@ const App = () => {
             name="Onboarding"
             component={OnboardingScreen}
           /> */}
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Register"
-            component={Register}
-          />
+
           <Stack.Screen
             options={{headerShown: false}}
             name="Login"
             component={Login}
           />
+
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Register"
+            component={Register}
+          />
+
           {/* <Stack.Screen
             options={{headerShown: false}}
             name="ReqPassChange"

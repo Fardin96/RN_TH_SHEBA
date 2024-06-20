@@ -8,6 +8,7 @@ import {setAuthToken} from '../redux-toolkit/features/authentication/authToken';
 import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
 // functions
 import {loginFormValidation} from '../functions/validations/formValidation';
+import {setLocalCache} from '../functions/Cache/cache';
 
 // const Login = ({navigation}) => {
 const Login = () => {
@@ -68,8 +69,9 @@ const Login = () => {
 
       if (response.data && response.data.token) {
         // console.log('token? :', response.data.access_token);
+        // console.log('login successful');
+
         disptach(setAuthToken(response.data.token));
-        console.log('login successful');
         navigation.navigate('Home');
       }
 
