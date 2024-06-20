@@ -35,6 +35,11 @@ const Stack = createNativeStackNavigator();
 //   },
 // };
 
+import {API_URL} from '@env';
+console.log('+--------------------------------------------+');
+console.log('API_URL --> ', API_URL);
+console.log('+--------------------------------------------+');
+
 const App = () => {
   return (
     <NavigationContainer
