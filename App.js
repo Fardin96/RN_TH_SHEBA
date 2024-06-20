@@ -25,7 +25,6 @@ import {store} from './redux-toolkit/store/store';
 import {colors} from './assets/colors/colors';
 import {API_URL} from '@env';
 // functions
-import {getLocalCache} from './functions/Cache/cache';
 import {getAuthToken} from './redux-toolkit/features/authentication/authToken';
 
 const Stack = createNativeStackNavigator();
@@ -56,7 +55,7 @@ const App = () => {
         }
         // console.log('cached token @app.js:', cachedToken);
       } catch (error) {
-        console.error('Error fetching local cache @app.js:', error);
+        console.warn('Error fetching local cache @app.js:', error);
       } finally {
         setLoading(false);
       }
@@ -97,7 +96,7 @@ const App = () => {
           }}></View>
       }>
       <Provider store={store}>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={cachedToken ? 'Home' : 'Login'}>
           {/* <Stack.Screen
             options={{headerShown: false}}
             name="Onboarding"
@@ -121,11 +120,13 @@ const App = () => {
             name="ReqPassChange"
             component={RequestNewPassword}
           /> */}
+
           {/* <Stack.Screen
             options={{headerShown: false}}
             name="ChangePass"
             component={ChangePassword}
           /> */}
+
           <Stack.Screen
             name="Home"
             component={Home}

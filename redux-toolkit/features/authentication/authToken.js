@@ -39,7 +39,7 @@ export const {setAuthToken, resetToken} = authTokenSlice.actions;
 //   return cachedToken;
 // };
 
-export const getAuthToken = () => {
+export const getAuthToken = state => {
   return new Promise(async (resolve, reject) => {
     const cachedToken = await getLocalCache();
     // console.log('cached token @authtoken-slice: ', cachedToken);

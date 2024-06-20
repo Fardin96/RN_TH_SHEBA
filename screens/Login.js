@@ -10,11 +10,12 @@ import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-sl
 import {loginFormValidation} from '../functions/validations/formValidation';
 import {setLocalCache} from '../functions/Cache/cache';
 
-// const Login = ({navigation}) => {
-const Login = () => {
+const Login = ({navigation, route}) => {
+  // const Login = () => {
   const disptach = useDispatch();
-  const navigation = useNavigation();
+  const navHook = useNavigation();
   const [login] = useLoginMutation();
+  const {useNavHook} = route?.params;
 
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
@@ -68,11 +69,16 @@ const Login = () => {
       }
 
       if (response.data && response.data.token) {
-        // console.log('token? :', response.data.access_token);
+        // console.log('token @login.js:', response.data.token);
         // console.log('login successful');
 
-        disptach(setAuthToken(response.data.token));
-        navigation.navigate('Home');
+        if (useNavHook) {
+          disptach(setAuthToken(response.data.token));
+          navHook.navigate('Home');
+        } else {
+          disptach(setAuthToken(response.data.token));
+          navigation.navigate('Home');
+        }
       }
 
       // console.log('LOGIN: RESPONSE: ', response);

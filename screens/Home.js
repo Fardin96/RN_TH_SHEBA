@@ -9,13 +9,13 @@ import {useDispatch} from 'react-redux';
 import {getLocalCache} from '../functions/Cache/cache';
 
 const Home = ({navigation}) => {
-  console.log('+--------------------------------------------+');
-  console.log('TOKEN CACHE @HOME ==> ', getAuthToken());
-  console.log('+--------------------------------------------+');
+  // console.log('+--------------------------------------------+');
+  // console.log('TOKEN CACHE @HOME ==> ', getAuthToken());
+  // console.log('+--------------------------------------------+');
 
   const disptach = useDispatch();
   function logouthandler() {
-    navigation.navigate('Login');
+    navigation.navigate('Login', {useNavHook: true});
     disptach(resetToken());
   }
 
