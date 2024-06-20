@@ -96,8 +96,8 @@ const AuthenticationForm = ({
       color: colors.dark.CONTRAST,
     },
     touchtitleBottomContainer: {
-      // borderwidth: 1,
-      // borderColor: 'red',
+      borderwidth: 1,
+      borderColor: 'blue',
       height: convert(150),
       width: title === 'Register' ? convert(300) : null,
       alignItems: 'center',
@@ -109,8 +109,8 @@ const AuthenticationForm = ({
         height: convert(110),
         borderRadius: convert(75),
         width: convert(425),
-        borderwidth: 1,
-        borderColor: 'red',
+        // borderwidth: 1,
+        // borderColor: 'red',
       },
       titleStyle: {
         fontSize: FontSize.btnTitle,
@@ -153,7 +153,7 @@ const AuthenticationForm = ({
       container: {
         width: convert(1000),
         paddingLeft: convert(155),
-        marginTop: convert(50),
+        marginTop: convert(100),
         // borderwidth: 5,
         // borderColor: 'red',
       },
@@ -185,13 +185,14 @@ const AuthenticationForm = ({
     navigation.navigate('ReqPassChange');
   }
 
+  //* focus inputbox
   useEffect(() => {
     if (title === 'Login') {
-      emailRef.current.focus();
+      // emailRef.current.focus();
     }
 
     if (title === 'Register') {
-      nameRef.current.focus();
+      // nameRef.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -260,7 +261,6 @@ const AuthenticationForm = ({
         ) : (
           <></>
         )}
-
         <CustomTextInput
           defaultValue="fardinshuvro96@gmail.co"
           refProp={emailRef}
@@ -269,7 +269,6 @@ const AuthenticationForm = ({
           errorMessage={errorMessage ? errorMessage : ''}
           hint={'*case-sensitive'}
         />
-
         {/* <View style={styles.bg.container}>
           <Image
             source={require('../../assets/images/auth-bg.png')}
@@ -277,7 +276,6 @@ const AuthenticationForm = ({
             resizeMode="contain"
           />
         </View> */}
-
         <CustomTextInput
           defaultValue="something1"
           refProp={passwordRef}
@@ -290,7 +288,6 @@ const AuthenticationForm = ({
           errorMessage={errorMessage ? errorMessage : ''}
           hint={'*case-sensitive | 8-32 characters | min 1 letter & 1 digit'}
         />
-
         {title === 'Register' ? (
           <CustomTextInput
             // defaultValue="something1"
@@ -307,15 +304,7 @@ const AuthenticationForm = ({
           <></>
         )}
 
-        {title === 'Login' ? (
-          <TouchableOpacity
-            style={styles.forgotPass.container}
-            onPress={handleForgotPass}>
-            <Text style={styles.forgotPass.txt}>Forgot Password?</Text>
-          </TouchableOpacity>
-        ) : (
-          <></>
-        )}
+        <View style={styles.forgotPass.container} />
 
         {err !== '' ? (
           <View style={styles.err.errContainer}>
@@ -334,7 +323,6 @@ const AuthenticationForm = ({
           containerStyle={styles.btn.containerStyle}
           onPress={handleSubmit}
         />
-
         {title === 'Register' ? (
           <View style={styles.bottom}>
             <Text style={styles.titleBottom}>or,</Text>

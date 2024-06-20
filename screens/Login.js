@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
@@ -8,8 +9,10 @@ import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-sl
 // functions
 import {loginFormValidation} from '../functions/validations/formValidation';
 
-const Login = ({navigation}) => {
+// const Login = ({navigation}) => {
+const Login = () => {
   const disptach = useDispatch();
+  const navigation = useNavigation();
   const [login] = useLoginMutation();
 
   const [err, setErr] = useState('');
@@ -67,7 +70,7 @@ const Login = ({navigation}) => {
         // console.log('token? :', response.data.access_token);
         disptach(setAuthToken(response.data.token));
         console.log('login successful');
-        // navigation.navigate('Home');
+        navigation.navigate('Home');
       }
 
       // console.log('LOGIN: RESPONSE: ', response);

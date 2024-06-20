@@ -1,8 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 // import {API_URL} from '@env';
 const API_URL = 'http://192.168.0.100:5000';
-// const API_URL = 'http://127.0.0.1:5000';
-// const API_URL = 'http://103.112.150.65:5000';
 
 export const authSlice = createApi({
   reducerPath: 'auth-slice',

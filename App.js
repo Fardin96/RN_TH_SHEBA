@@ -16,10 +16,7 @@ import {Provider} from 'react-redux';
 // screens
 import Register from './screens/Register';
 import Login from './screens/Login';
-// import Home from './screens/Home';
-// import RequestNewPassword from './components/AuthScreens/ForgotPassScreens/RequestNewPassword';
-// import ChangePassword from './components/AuthScreens/ForgotPassScreens/ChangePassword';
-// import OnboardingScreen from './screens/OnboardingScreen';
+import Home from './screens/Home';
 // components
 // import CustomHeader from './components/CustomHeader/CustomHeader';
 // redux-store
@@ -49,9 +46,7 @@ const App = () => {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: colors.dark.PRIMARY,
-          }}>
-          {/* <Text>{'Loading...'}</Text> */}
-        </View>
+          }}></View>
       }>
       <Provider store={store}>
         <Stack.Navigator>
@@ -80,17 +75,17 @@ const App = () => {
             name="ChangePass"
             component={ChangePassword}
           /> */}
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Home"
             component={Home}
             options={{
               header: () => (
                 <View style={{backgroundColor: colors.dark.PRIMARY}}>
-                  <CustomHeader />
+                  {/* <CustomHeader /> */}
                 </View>
               ),
             }}
-          /> */}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
