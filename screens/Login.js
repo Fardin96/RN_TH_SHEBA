@@ -11,11 +11,11 @@ import {loginFormValidation} from '../functions/validations/formValidation';
 import {setLocalCache} from '../functions/Cache/cache';
 
 const Login = ({navigation, route}) => {
-  // const Login = () => {
   const disptach = useDispatch();
-  const navHook = useNavigation();
   const [login] = useLoginMutation();
-  const {useNavHook} = route?.params;
+  if (route?.params) {
+    var {useNavHook} = route?.params;
+  }
 
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
@@ -74,7 +74,7 @@ const Login = ({navigation, route}) => {
 
         if (useNavHook) {
           disptach(setAuthToken(response.data.token));
-          navHook.navigate('Home');
+          navigation.push('Home');
         } else {
           disptach(setAuthToken(response.data.token));
           navigation.navigate('Home');
