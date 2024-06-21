@@ -38,9 +38,9 @@ const Stack = createNativeStackNavigator();
 //   },
 // };
 
-// console.log('+--------------------------------------------+');
-// console.log('API_URL --> ', API_URL);
-// console.log('+--------------------------------------------+');
+console.log('+--------------------------------------------+');
+console.log('API_URL --> ', API_URL);
+console.log('+--------------------------------------------+');
 
 const App = () => {
   const [cachedToken, setCachedToken] = useState(null);
