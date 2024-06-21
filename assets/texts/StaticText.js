@@ -1,1 +1,2 @@
-export const APP_NAME = 'Sheba Technologies';
+export const APP_NAME = 'TODO LIST';
+export const COMPANY_NAME = 'Sheba Technologies';

@@ -11,7 +11,7 @@ import {Button} from 'react-native-elements';
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts';
-import {APP_NAME} from '../../assets/texts/StaticText';
+import {APP_NAME, COMPANY_NAME} from '../../assets/texts/StaticText';
 import {Image} from 'react-native';
 // component
 import CustomTextInput from '../TextInput/CustomTextInput';
@@ -64,9 +64,15 @@ const AuthenticationForm = ({
     titleTop: {
       // marginVertical: convert(200),
       marginTop: convert(50),
-      color: colors.dark.ACCENT,
-      fontFamily: 'NovaMono-Regular',
+      color: colors.dark.CONTRAST,
+      // fontFamily: 'NovaMono-Regular',
       fontSize: convert(70),
+      fontWeight: '700',
+    },
+    titleTopCom: {
+      color: colors.dark.CONTRAST,
+      fontSize: convert(35),
+      fontWeight: '700',
     },
     bg: {
       container: {
@@ -86,13 +92,14 @@ const AuthenticationForm = ({
       // borderColor: 'red',
     },
     titleBottom: {
-      opacity: 0.5,
+      // opacity: 0.5,
       color: colors.dark.CONTRAST,
       fontFamily: 'Montserrat-Regular',
     },
     touchtitleBottom: {
-      fontFamily: 'Montserrat-SemiBold',
+      // fontFamily: 'Montserrat-SemiBold',
       fontSize: FontSize.mgsBottom,
+      fontWeight: '900',
       color: colors.dark.CONTRAST,
     },
     touchtitleBottomContainer: {
@@ -104,6 +111,7 @@ const AuthenticationForm = ({
     },
     error: {color: colors.dark.ERROR},
     btn: {
+      // fontWeight: 'condensedBold'
       buttonStyle: {
         backgroundColor: colors.dark.ACCENT,
         height: convert(110),
@@ -114,7 +122,8 @@ const AuthenticationForm = ({
       },
       titleStyle: {
         fontSize: FontSize.btnTitle,
-        fontFamily: 'Montserrat-Bold',
+        fontWeight: '900',
+        // fontFamily: 'Montserrat-Bold',
       },
       containerStyle: {
         marginTop: convert(80),
@@ -215,12 +224,13 @@ const AuthenticationForm = ({
       showsVerticalScrollIndicator={false}>
       <View style={styles.logo.container}>
         <Image
-          source={require('../../assets/images/sheba_logo.png')}
+          source={require('../../assets/images/sheba_logo-removebg-preview.png')}
           resizeMode="contain"
           style={styles.logo.img}
         />
 
         <Text style={styles.titleTop}>{APP_NAME}</Text>
+        <Text style={styles.titleTopCom}>{COMPANY_NAME}</Text>
       </View>
 
       <View style={styles.form}>

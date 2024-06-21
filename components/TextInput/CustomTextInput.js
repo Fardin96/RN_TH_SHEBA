@@ -33,15 +33,16 @@ const CustomTextInput = ({
       width: convert(800),
       borderRadius: convert(75),
       borderWidth: 1,
-      borderColor: colors.dark.CONTRAST,
+      borderColor: colors.dark.WHITE,
       opacity: 0.7,
       backgroundColor: 'rgba(255,255,355,0.25)',
       // backgroundColor: 'white',
       // borderColor: 'red',
     },
     inputContainerStyle: {
-      height: convert(117),
+      height: convert(116),
       borderRadius: convert(100),
+      borderColor: 'white',
 
       // borderWidth: 1,
       // borderColor: 'green',
@@ -51,6 +52,7 @@ const CustomTextInput = ({
       marginHorizontal: convert(25),
       borderRadius: convert(100),
       color: colors.dark.CONTRAST,
+      fontWeight: '900',
       // fontFamily: 'Montserrat-Light',
 
       // borderWidth: 1,
@@ -62,11 +64,12 @@ const CustomTextInput = ({
       },
       txt: {
         // fontFamily: 'Montserrat-Regular',
+        fontWeight: '500',
         marginTop: convert(5),
         marginBottom: convert(-30),
         fontSize: FontSize.hint,
         color: colors.dark.CONTRAST,
-        opacity: 0.5,
+        // opacity: 0.5,
       },
     },
     eye: {
