@@ -44,12 +44,13 @@ const Login = ({navigation}) => {
     try {
       loadingHandler();
       const response = await login(input);
+      console.log('login response: ', response);
       loadingHandler();
 
       // handle login error
       if (response.error) {
         const error =
-          response.error.data.detail === 'Invalid credentials'
+          response.error.data === 'Please enter correct name and password'
             ? 'Error logging in!'
             : '';
         setErr(error);

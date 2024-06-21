@@ -255,7 +255,7 @@ const AuthenticationForm = ({
           eyePressHandler={eyePressHandler}
           errorStyle={styles.error}
           errorMessage={errorMessage ? errorMessage : ''}
-          hint={'*case-sensitive | 8-32 characters | min 1 letter & 1 digit'}
+          hint={'*case-sensitive'}
         />
 
         {title === 'Register' ? (

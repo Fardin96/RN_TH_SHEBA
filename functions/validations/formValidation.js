@@ -29,17 +29,23 @@ export const formValidation = (input, setErr) => {
   }
 
   // password matching
-  if (input.password1 !== input.password2) {
+  if (
+    input.confirmPassword !== undefined &&
+    input.password !== input.confirmPassword
+  ) {
     setErr("Passwords don't match!");
     return;
   }
 
-  if (!passwordValidation(input.password1)) {
+  if (!passwordValidation(input.password)) {
     setErr('Please enter valid name and password');
     return false;
   }
 
-  if (!passwordValidation(input.password2)) {
+  if (
+    input.confirmPassword !== undefined &&
+    !passwordValidation(input.confirmPassword)
+  ) {
     setErr('Please enter valid name and password');
     return false;
   }
