@@ -15,7 +15,7 @@ const Home = ({navigation}) => {
 
   const disptach = useDispatch();
   function logouthandler() {
-    navigation.navigate('Login', {useNavHook: true});
+    navigation.navigate('Login');
     disptach(resetToken());
   }
 
