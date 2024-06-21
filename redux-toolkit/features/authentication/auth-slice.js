@@ -22,27 +22,8 @@ export const authSlice = createApi({
           body: data,
         }),
       }),
-      // resetPassReq: builder.mutation({
-      //   query: data => ({
-      //     url: '/api/auth/password-reset-request',
-      //     method: 'POST',
-      //     body: data,
-      //   }),
-      // }),
-      // resetPass: builder.mutation({
-      //   query: data => ({
-      //     url: '/api/auth/password-reset',
-      //     method: 'POST',
-      //     body: data,
-      //   }),
-      // }),
     };
   },
 });
 
-export const {
-  useRegistrationMutation,
-  useLoginMutation,
-  useResetPassReqMutation,
-  useResetPassMutation,
-} = authSlice;
+export const {useRegistrationMutation, useLoginMutation} = authSlice;

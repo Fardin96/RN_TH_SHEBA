@@ -18,31 +18,17 @@ export const authTokenSlice = createSlice({
       setLocalCache(state.value);
     },
     resetToken: state => {
-      // console.log('token in state: ', state.value);
       state.value = '';
       remLocalCache();
-      // console.log('reset was token');
-      // console.log('token in state: ', state.value);
     },
   },
 });
 
 export const {setAuthToken, resetToken} = authTokenSlice.actions;
 
-// export const getAuthToken = async state => {
-//   // console.log('auth-token-slice: getAuthToken: ', state.authToken.value);
-
-//   const cachedToken = await getLocalCache();
-//   console.log('cached token @authtoken-slice: ', cachedToken);
-
-//   // return state?.authToken.value || cachedToken;
-//   return cachedToken;
-// };
-
 export const getAuthToken = state => {
   return new Promise(async (resolve, reject) => {
     const cachedToken = await getLocalCache();
-    // console.log('cached token @authtoken-slice: ', cachedToken);
 
     if (cachedToken) {
       resolve(cachedToken);
