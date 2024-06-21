@@ -133,7 +133,8 @@ const AuthenticationForm = ({
     err: {
       msg: {
         color: colors.dark.ERROR,
-        fontFamily: 'Montserrat-Bold',
+        // fontFamily: 'Montserrat-Bold',
+        fontWeight: '900',
         fontSize: FontSize.mgsBottom,
       },
       errContainer: {
