@@ -5,6 +5,8 @@ import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
 import {setAuthToken} from '../redux-toolkit/features/authentication/authToken';
 import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
+// functions
+import {formValidation} from '../functions/validations/formValidation';
 
 const Login = ({navigation}) => {
   const disptach = useDispatch();
@@ -32,6 +34,13 @@ const Login = ({navigation}) => {
   }, [err]);
 
   const onSubmit = async input => {
+    // handle empty input
+    if (!formValidation(input, setErr)) {
+      return;
+    } else {
+      setErr('');
+    }
+
     try {
       loadingHandler();
       const response = await login(input);

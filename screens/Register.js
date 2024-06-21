@@ -4,7 +4,7 @@ import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
 import {useRegistrationMutation} from '../redux-toolkit/features/authentication/auth-slice';
 // functions
-import {registerFormValidation} from '../functions/validations/formValidation';
+import {formValidation} from '../functions/validations/formValidation';
 
 const Register = ({navigation}) => {
   const [err, setErr] = useState('');
@@ -23,49 +23,35 @@ const Register = ({navigation}) => {
     return () => clearTimeout(timeout);
   }, [err]);
 
-  // todo: pref: 1. useMemo, useCallback, lazy loading
-  // remove console.logs -> use lib
   const onSubmit = async input => {
-    // console.log('screen: register: input ->', input);
+    // handle empty input
+    if (!formValidation(input, setErr)) {
+      return;
+    } else {
+      setErr('');
+    }
 
-    // form validation
-    // if (!registerFormValidation(input, setErr)) {
-    //   //! todo: uncomment
-    //   return;
-    // } else {
-    //   setErr('');
-    // }
-
-    // todo: cache to asyncStorage -> clear on logout!
-    //! todo: uncomment
     try {
       loadingHandler();
       const response = await registration(input);
       loadingHandler();
 
+      // handle registration error
       if (response?.error) {
         const error = 'Error registering!';
         setErr(error);
         return;
       }
 
+      // handle registration response
       if (response?.data && response.data.token) {
-        console.log('login successful: msg:', response.data);
+        // console.log('login successful: msg:', response.data);
 
-        // if (
-        //   response.data.message === 'Registration successful. Please login.'
-        // ) {
         navigation.navigate('Login');
-        // }
       }
-
-      // console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);
     } catch (error) {
       console.error('SCREEN:REGISTER: REGISTER API ERR: ', error);
     }
-
-    //! todo: uncomment
-    // navigation.navigate('Login');
   };
 
   function handleLoginNav() {

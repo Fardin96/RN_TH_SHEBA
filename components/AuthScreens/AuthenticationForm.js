@@ -225,25 +225,17 @@ const AuthenticationForm = ({
 
       <View style={styles.form}>
         {title === 'Register' ? (
-          <>
-            <CustomTextInput
-              refProp={nameRef}
-              placeholder="Name"
-              maxLength={20}
-              errorStyle={styles.error}
-              errorMessage={errorMessage ? errorMessage : ''}
-            />
-            {/* <CustomTextInput
-              refProp={lastNameRef}
-              placeholder="Last Name"
-              maxLength={20}
-              errorStyle={styles.error}
-              errorMessage={errorMessage ? errorMessage : ''}
-            /> */}
-          </>
+          <CustomTextInput
+            refProp={nameRef}
+            placeholder="Name"
+            maxLength={20}
+            errorStyle={styles.error}
+            errorMessage={errorMessage ? errorMessage : ''}
+          />
         ) : (
           <></>
         )}
+
         <CustomTextInput
           defaultValue="fardinshuvro96@gmail.co"
           refProp={emailRef}
@@ -252,13 +244,7 @@ const AuthenticationForm = ({
           errorMessage={errorMessage ? errorMessage : ''}
           hint={'*case-sensitive'}
         />
-        {/* <View style={styles.bg.container}>
-          <Image
-            source={require('../../assets/images/auth-bg.png')}
-            style={styles.bg.img}
-            resizeMode="contain"
-          />
-        </View> */}
+
         <CustomTextInput
           defaultValue="something1"
           refProp={passwordRef}
@@ -271,6 +257,7 @@ const AuthenticationForm = ({
           errorMessage={errorMessage ? errorMessage : ''}
           hint={'*case-sensitive | 8-32 characters | min 1 letter & 1 digit'}
         />
+
         {title === 'Register' ? (
           <CustomTextInput
             // defaultValue="something1"
@@ -306,6 +293,7 @@ const AuthenticationForm = ({
           containerStyle={styles.btn.containerStyle}
           onPress={handleSubmit}
         />
+
         {title === 'Register' ? (
           <View style={styles.bottom}>
             <Text style={styles.titleBottom}>or,</Text>
