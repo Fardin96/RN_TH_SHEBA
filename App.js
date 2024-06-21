@@ -97,12 +97,6 @@ const App = () => {
       }>
       <Provider store={store}>
         <Stack.Navigator initialRouteName={cachedToken ? 'Home' : 'Login'}>
-          {/* <Stack.Screen
-            options={{headerShown: false}}
-            name="Onboarding"
-            component={OnboardingScreen}
-          /> */}
-
           <Stack.Screen
             options={{headerShown: false}}
             name="Login"
@@ -114,18 +108,6 @@ const App = () => {
             name="Register"
             component={Register}
           />
-
-          {/* <Stack.Screen
-            options={{headerShown: false}}
-            name="ReqPassChange"
-            component={RequestNewPassword}
-          /> */}
-
-          {/* <Stack.Screen
-            options={{headerShown: false}}
-            name="ChangePass"
-            component={ChangePassword}
-          /> */}
 
           <Stack.Screen
             name="Home"
