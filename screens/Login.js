@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
 import {setAuthToken} from '../redux-toolkit/features/authentication/authToken';
 import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
-// functions
-import {loginFormValidation} from '../functions/validations/formValidation';
-import {setLocalCache} from '../functions/Cache/cache';
 
 const Login = ({navigation}) => {
   const disptach = useDispatch();
@@ -36,44 +32,25 @@ const Login = ({navigation}) => {
   }, [err]);
 
   const onSubmit = async input => {
-    // console.log('screen: login: input ->', input);
-
-    // form validation
-    // if (!loginFormValidation(input, setErr)) {
-    //   //! todo: uncomment!
-    //   return;
-    // } else {
-    //   setErr('');
-    // }
-
-    //! todo: uncomment!
-    // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
     try {
       loadingHandler();
       const response = await login(input);
       loadingHandler();
 
+      // handle login error
       if (response.error) {
         const error =
           response.error.data.detail === 'Invalid credentials'
             ? 'Error logging in!'
             : '';
-
-        // console.log('LOGIN: ERROR: from res: ', response.error);
-        // const error = 'Error logging in!';
-
         setErr(error);
       }
 
+      // handle login response
       if (response.data && response.data.token) {
-        // console.log('token @login.js:', response.data.token);
-        // console.log('login successful');
-
         disptach(setAuthToken(response.data.token));
         navigation.push('Home');
       }
-
-      // console.log('LOGIN: RESPONSE: ', response);
     } catch (error) {
       console.error('LOGIN: ERROR: ', error);
     }

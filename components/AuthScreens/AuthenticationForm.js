@@ -167,13 +167,13 @@ const AuthenticationForm = ({
   });
 
   const nameRef = useRef(null);
-  const lastNameRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
   const emailRef = useRef(null);
 
   const [hidden, setHidden] = useState(true);
   const [hidden2, setHidden2] = useState(true);
+
   const eyePressHandler = () => {
     setHidden(prev => !prev);
   };
@@ -181,49 +181,32 @@ const AuthenticationForm = ({
     setHidden2(prev => !prev);
   };
 
-  function handleForgotPass() {
-    navigation.navigate('ReqPassChange');
-  }
-
   //* focus inputbox
-  useEffect(() => {
-    if (title === 'Login') {
-      // emailRef.current.focus();
-    }
+  // useEffect(() => {
+  //   if (title === 'Login') {
+  //     // emailRef.current.focus();
+  //   }
 
-    if (title === 'Register') {
-      // nameRef.current.focus();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   if (title === 'Register') {
+  //     // nameRef.current.focus();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleSubmit = () => {
     const name = nameRef.current?.value;
-    // const lastName = lastNameRef.current?.value;
     const password = passwordRef.current?.value;
     const confirmPassword = confirmPasswordRef.current?.value;
     const email = emailRef.current?.value;
 
-    const newUserData = {
+    const userData = {
       email: email,
       password: password,
       confirmPassword: confirmPassword,
       name: name,
-      // last_name: lastName,
     };
 
-    // console.log('new user data: ', newUserData);
-
-    const validationData = {
-      email: email,
-      password: password,
-    };
-
-    if (title === 'Register') {
-      onSubmit(newUserData);
-    } else {
-      onSubmit(validationData);
-    }
+    onSubmit(userData);
   };
 
   return (
