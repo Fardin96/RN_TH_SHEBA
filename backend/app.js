@@ -16,7 +16,7 @@ const connection = mongoose.connection;
 
 // mongodb connection
 const uri = process.env.MONGODB_URI;
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 mongoose.connect(uri);
 
