@@ -116,23 +116,22 @@ const Dailytarget = () => {
       return;
     }
 
-    setTask(prevTask => [
-      ...prevTask,
-      {
-        id: prevTask.length
-          ? prevTask.reduce((acc, cur) => {
-              if (cur.id > acc.id) return cur;
-              return acc;
-            }).id + 1
-          : 0,
-        is_completed: false,
-        name: newTaskTitle,
-        details: newTaskDetails,
-        alarm: newAlarmString,
-      },
-    ]);
+    const newTask = {
+      id: task.length
+        ? task.reduce((acc, cur) => {
+            if (cur.id > acc.id) return cur;
+            return acc;
+          }).id + 1
+        : 0,
+      is_completed: false,
+      name: newTaskTitle,
+      details: newTaskDetails,
+      alarm: newAlarmString,
+    };
 
-    setLocalCache('todo', JSON.stringify(task));
+    setTask(prevTask => [...prevTask, newTask]);
+
+    setLocalCache('todo', JSON.stringify([...task, newTask]));
 
     // reset input field
     taskTitleRef.current.value = '';
