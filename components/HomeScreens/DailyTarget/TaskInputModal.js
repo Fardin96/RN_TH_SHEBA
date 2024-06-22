@@ -192,10 +192,7 @@ const styles = StyleSheet.create({
       marginTop: convert(30),
     },
     cancelBtn: {
-      // backgroundColor: 'red',
       backgroundColor: colors.dark.PRIMARY,
-      // borderWidth: 1,
-      // borderColor: 'black',
     },
   },
 });
