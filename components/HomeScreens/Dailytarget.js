@@ -169,21 +169,6 @@ const Dailytarget = () => {
           handleTaskEdit={handleTaskEdit}
           alarmString={alarmString}
         />
-
-        {/* <Input
-          ref={taskRef}
-          maxLength={40}
-          onChangeText={e => (taskRef.current.value = e)}
-          placeholder="Add a task"
-          // errorStyle={styles.error}
-          // errorMessage={errorMessage ? errorMessage : ''}
-          inputContainerStyle={{
-            backgroundColor: colors.dark.PRIMARY,
-          }}
-          inputStyle={{
-            color: colors.dark.CONTRAST,
-          }}
-        /> */}
       </View>
 
       <View style={{flex: 1}}>

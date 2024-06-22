@@ -2,18 +2,25 @@ import React from 'react';
 import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 // assets
 import {colors} from '../assets/colors/colors';
-import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../assets/dimensions/dimensions';
+import {
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  convert,
+} from '../assets/dimensions/dimensions';
 // functions
 import {resetToken} from '../redux-toolkit/features/authentication/authToken';
 import {useDispatch} from 'react-redux';
 import TasksContainer from '../components/HomeScreens/DailyTarget/TasksContainer';
 import Dailytarget from '../components/HomeScreens/Dailytarget';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {remLocalCache} from '../functions/Cache/cache';
 
 const Home = ({navigation}) => {
   const disptach = useDispatch();
   function logouthandler() {
-    navigation.navigate('Login');
+    navigation.push('Login');
     disptach(resetToken());
+    remLocalCache('todo');
   }
 
   return (
@@ -21,30 +28,41 @@ const Home = ({navigation}) => {
       style={{
         flex: 1,
         alignItems: 'center',
-        // justifyContent: 'center',
         backgroundColor: colors.dark.PRIMARY,
       }}>
-      {/* todo: replace with header */}
       <View
         style={{
-          borderWidth: 1,
-          borderColor: 'blue',
+          borderWidth: 3,
+          borderColor: colors.dark.CONTRAST,
+          borderBottomEndRadius: convert(100),
+          borderBottomStartRadius: convert(100),
           height: SCREEN_HEIGHT - (SCREEN_HEIGHT - 120),
           width: SCREEN_WIDTH,
-          alignItems: 'flex-end',
+          alignItems: 'center',
           justifyContent: 'center',
+          flexDirection: 'row',
+          marginBottom: convert(50),
+          backgroundColor: colors.dark.CONTRAST,
         }}>
-        <Button style={{}} title="LOGOUT !" onPress={logouthandler} />
+        <Text
+          style={{color: 'white', fontSize: convert(100), fontWeight: '900'}}>
+          TODOLIST App
+        </Text>
+        <TouchableOpacity
+          onPress={logouthandler}
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: convert(150),
+            width: convert(150),
+            borderRadius: convert(75),
+            backgroundColor: 'grey',
+            marginLeft: convert(100),
+          }}>
+          <Icon name={'exit'} size={30} color={colors.dark.WHITE} />
+        </TouchableOpacity>
       </View>
 
-      {/* <View
-        style={{
-          borderWidth: 1,
-          borderColor: 'red',
-          width: SCREEN_WIDTH,
-          height: SCREEN_HEIGHT - 200,
-        }}
-      /> */}
       <Dailytarget />
     </View>
   );

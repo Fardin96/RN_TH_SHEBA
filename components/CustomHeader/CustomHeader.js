@@ -7,101 +7,101 @@ import {useDispatch} from 'react-redux';
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 // components
-import DateCircle from './DateCircle';
-import TopRightContainer from './TopRightContainer';
-import SalahTimings from './SalahTimings';
+// import DateCircle from './DateCircle';
+// import TopRightContainer from './TopRightContainer';
+// import SalahTimings from './SalahTimings';
 // functions
-import {hijriDate} from '../../functions/HijriDate';
-import {getTimeNLocation} from '../../functions/CurrentTimeNLocation';
-// rtk-slices
-import {setArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+// import {hijriDate} from '../../functions/HijriDate';
+// import {getTimeNLocation} from '../../functions/CurrentTimeNLocation';
+// // rtk-slices
+// import {setArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
 
 const CustomHeader = () => {
-  const [timeNLocation, setTimeNLocation] = useState({
-    location: {
-      city: '',
-    },
-    time: {
-      seheriIftarTimes: {
-        seheri: {
-          hour: '',
-          minute: '',
-        },
-        iftar: {
-          hour: '',
-          minute: '',
-        },
-      },
-      prayerTimes: {
-        fajr: {
-          hour: '',
-          minute: '',
-        },
-        duhr: {
-          hour: '',
-          minute: '',
-        },
-        asr: {
-          hour: '',
-          minute: '',
-        },
-        magrib: {
-          hour: '',
-          minute: '',
-        },
-        isha: {
-          hour: '',
-          minute: '',
-        },
-      },
-    },
-  });
+  // const [timeNLocation, setTimeNLocation] = useState({
+  //   location: {
+  //     city: '',
+  //   },
+  //   time: {
+  //     seheriIftarTimes: {
+  //       seheri: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //       iftar: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //     },
+  //     prayerTimes: {
+  //       fajr: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //       duhr: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //       asr: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //       magrib: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //       isha: {
+  //         hour: '',
+  //         minute: '',
+  //       },
+  //     },
+  //   },
+  // });
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const hijriDateToday = hijriDate();
-    dispatch(setArabicDate(hijriDateToday));
-    getTimeNLocation(setTimeNLocation);
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const hijriDateToday = hijriDate();
+  //   dispatch(setArabicDate(hijriDateToday));
+  //   getTimeNLocation(setTimeNLocation);
+  // }, []);
 
-  const allSalahTimings = [
-    {
-      startTime: `${timeNLocation.time.prayerTimes.fajr.hour} : ${timeNLocation.time.prayerTimes.fajr.minute}`,
-      meridiem: 'AM',
-      icon: 'sunrise',
-      name: 'Fajr',
-    },
-    {
-      startTime: `${timeNLocation.time.prayerTimes.duhr.hour} : ${timeNLocation.time.prayerTimes.duhr.minute}`,
-      meridiem: 'PM',
-      icon: 'sun',
-      name: "Duh'r",
-    },
-    {
-      startTime: `${timeNLocation.time.prayerTimes.asr.hour} : ${timeNLocation.time.prayerTimes.asr.minute}`,
-      meridiem: 'PM',
-      icon: 'sunset',
-      name: 'Asr',
-    },
-    {
-      startTime: `${timeNLocation.time.seheriIftarTimes.iftar.hour} : ${timeNLocation.time.seheriIftarTimes.iftar.minute}`,
-      meridiem: 'PM',
-      icon: 'moon',
-      name: 'Magrib',
-    },
-    {
-      startTime: `${timeNLocation.time.prayerTimes.isha.hour} : ${timeNLocation.time.prayerTimes.isha.minute}`,
-      meridiem: 'PM',
-      icon: 'moon',
-      name: 'Isha',
-    },
-  ];
+  // const allSalahTimings = [
+  //   {
+  //     startTime: `${timeNLocation.time.prayerTimes.fajr.hour} : ${timeNLocation.time.prayerTimes.fajr.minute}`,
+  //     meridiem: 'AM',
+  //     icon: 'sunrise',
+  //     name: 'Fajr',
+  //   },
+  //   {
+  //     startTime: `${timeNLocation.time.prayerTimes.duhr.hour} : ${timeNLocation.time.prayerTimes.duhr.minute}`,
+  //     meridiem: 'PM',
+  //     icon: 'sun',
+  //     name: "Duh'r",
+  //   },
+  //   {
+  //     startTime: `${timeNLocation.time.prayerTimes.asr.hour} : ${timeNLocation.time.prayerTimes.asr.minute}`,
+  //     meridiem: 'PM',
+  //     icon: 'sunset',
+  //     name: 'Asr',
+  //   },
+  //   {
+  //     startTime: `${timeNLocation.time.seheriIftarTimes.iftar.hour} : ${timeNLocation.time.seheriIftarTimes.iftar.minute}`,
+  //     meridiem: 'PM',
+  //     icon: 'moon',
+  //     name: 'Magrib',
+  //   },
+  //   {
+  //     startTime: `${timeNLocation.time.prayerTimes.isha.hour} : ${timeNLocation.time.prayerTimes.isha.minute}`,
+  //     meridiem: 'PM',
+  //     icon: 'moon',
+  //     name: 'Isha',
+  //   },
+  // ];
 
   return (
     <LinearGradient
       style={styles.root}
       colors={[colors.dark.GRADIENT_START, colors.dark.GRADIENT_END]}>
-      <View style={styles.timedate}>
+      {/* <View style={styles.timedate}>
         <DateCircle date={hijriDate()} />
 
         <TopRightContainer
@@ -123,7 +123,7 @@ const CustomHeader = () => {
             />
           );
         })}
-      </View>
+      </View> */}
     </LinearGradient>
   );
 };
