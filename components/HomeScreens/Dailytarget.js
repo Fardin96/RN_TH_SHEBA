@@ -45,27 +45,7 @@ const Dailytarget = () => {
       const {taskID, newValue} = stateUpdateQueue.current[0];
 
       try {
-        // const response = await updateTodo({
-        //   id: taskID,
-        //   value: newValue,
-        //   // year: parseInt(day.year, 10),
-        //   // month: parseInt(day.monthNumber, 10),
-        //   // day: parseInt(day.day, 10),
-        // });
-
-        // const updatedTask = {
-        //   ...prevTask[idx],
-        //   is_completed: newValue,
-        // };
-
-        // return [
-        //   ...prevTask.slice(0, idx),
-        //   updatedTask,
-        //   ...prevTask.slice(idx + 1),
-        // ];
-
         const cachedTodosString = await getLocalCache('todo');
-        // console.log('first: ', cachedTodosString);
         let cachedTodos = [];
         if (cachedTodosString) {
           cachedTodos = JSON.parse(cachedTodosString);
@@ -77,8 +57,6 @@ const Dailytarget = () => {
 
         setLocalCache('todo', JSON.stringify(updatedTodos));
 
-        // console.log('TODO LIST TRACKER RACE QUEUE: response: ', response);
-
         stateUpdateQueue.current.shift();
       } catch (issue) {
         console.error('Error updating state:', issue);
@@ -89,23 +67,11 @@ const Dailytarget = () => {
     setProcessingQueue(false);
   };
 
-  // const {
-  //   data = {},
-  //   error,
-  //   isError,
-  //   isLoading,
-  // } = useGetTodosQuery({
-  //   // year: parseInt(day.year, 10),
-  //   // month: parseInt(day.monthNumber, 10),
-  //   // day: parseInt(day.day, 10),
-  // });
-
   useEffect(() => {
     try {
       (async () => {
         const savedTasks = await getLocalCache('todo');
         setTask(JSON.parse(savedTasks));
-        // console.log('saved tasks: ', JSON.parse(savedTasks));
       })();
     } catch (issue) {
       console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
@@ -183,10 +149,14 @@ const Dailytarget = () => {
   };
 
   const handleTaskDeletion = idx => {
-    // todo: popup!
     setTask(prevTask => {
       return [...prevTask.slice(0, idx), ...prevTask.slice(idx + 1)];
     });
+
+    setLocalCache(
+      'todo',
+      JSON.stringify([...task.slice(0, idx), ...task.slice(idx + 1)]),
+    );
   };
 
   return (
