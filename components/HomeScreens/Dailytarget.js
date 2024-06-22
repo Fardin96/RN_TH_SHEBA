@@ -17,6 +17,7 @@ import {SCREEN_HEIGHT, convert} from '../../assets/dimensions/dimensions';
 // components
 import TasksContainer from './DailyTarget/TasksContainer';
 import TaskInputModal from './DailyTarget/TaskInputModal';
+import {setLocalCache} from '../../functions/Cache/cache';
 
 const Dailytarget = () => {
   // const day = useSelector(getArabicDate);
@@ -114,12 +115,20 @@ const Dailytarget = () => {
     setTask(prevTask => [
       ...prevTask,
       {
+        id: prevTask.length
+          ? prevTask.reduce((acc, cur) => {
+              if (cur.id > acc.id) return cur;
+              return acc;
+            }).id + 1
+          : 0,
         is_completed: false,
         name: newTaskTitle,
         details: newTaskDetails,
         alarm: newAlarmString,
       },
     ]);
+
+    setLocalCache('todo', JSON.stringify(task));
 
     // reset input field
     taskTitleRef.current.value = '';
