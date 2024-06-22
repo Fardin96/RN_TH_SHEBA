@@ -20,8 +20,11 @@ import TaskInputModal from './DailyTarget/TaskInputModal';
 import {getLocalCache, setLocalCache} from '../../functions/Cache/cache';
 
 const Dailytarget = () => {
-  // const day = useSelector(getArabicDate);
   const [modalVisible, setModalVisible] = useState(false);
+  const taskTitleRef = useRef(null);
+  const taskDetailsRef = useRef(null);
+  const [task, setTask] = useState([]);
+  const [alarmString, setAlarmString] = useState('');
 
   //* handeling race conditions with queue
   const stateUpdateQueue = useRef([]);
@@ -42,13 +45,37 @@ const Dailytarget = () => {
       const {taskID, newValue} = stateUpdateQueue.current[0];
 
       try {
-        const response = await updateTodo({
-          id: taskID,
-          value: newValue,
-          // year: parseInt(day.year, 10),
-          // month: parseInt(day.monthNumber, 10),
-          // day: parseInt(day.day, 10),
-        });
+        // const response = await updateTodo({
+        //   id: taskID,
+        //   value: newValue,
+        //   // year: parseInt(day.year, 10),
+        //   // month: parseInt(day.monthNumber, 10),
+        //   // day: parseInt(day.day, 10),
+        // });
+
+        // const updatedTask = {
+        //   ...prevTask[idx],
+        //   is_completed: newValue,
+        // };
+
+        // return [
+        //   ...prevTask.slice(0, idx),
+        //   updatedTask,
+        //   ...prevTask.slice(idx + 1),
+        // ];
+
+        const cachedTodosString = await getLocalCache('todo');
+        // console.log('first: ', cachedTodosString);
+        let cachedTodos = [];
+        if (cachedTodosString) {
+          cachedTodos = JSON.parse(cachedTodosString);
+        }
+
+        const updatedTodos = cachedTodos.map(todo =>
+          todo.id === taskID ? {...todo, is_completed: newValue} : todo,
+        );
+
+        setLocalCache('todo', JSON.stringify(updatedTodos));
 
         // console.log('TODO LIST TRACKER RACE QUEUE: response: ', response);
 
@@ -78,16 +105,12 @@ const Dailytarget = () => {
       (async () => {
         const savedTasks = await getLocalCache('todo');
         setTask(JSON.parse(savedTasks));
+        // console.log('saved tasks: ', JSON.parse(savedTasks));
       })();
     } catch (issue) {
       console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
     }
-  }, [task]);
-
-  const taskTitleRef = useRef(null);
-  const taskDetailsRef = useRef(null);
-  const [task, setTask] = useState([]);
-  const [alarmString, setAlarmString] = useState('');
+  }, []);
 
   const handleSubmit = async () => {
     const newTaskTitle = taskTitleRef.current.value.trim();
@@ -135,7 +158,6 @@ const Dailytarget = () => {
         ...prevTask[idx],
         is_completed: newValue,
       };
-      // console.log('comp:Daily Target: updatedTask: ', updatedTask);
 
       return [
         ...prevTask.slice(0, idx),
