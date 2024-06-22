@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {SafeAreaViewBase, StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 // rtk-slices
@@ -17,7 +17,7 @@ import {SCREEN_HEIGHT, convert} from '../../assets/dimensions/dimensions';
 // components
 import TasksContainer from './DailyTarget/TasksContainer';
 import TaskInputModal from './DailyTarget/TaskInputModal';
-import {setLocalCache} from '../../functions/Cache/cache';
+import {getLocalCache, setLocalCache} from '../../functions/Cache/cache';
 
 const Dailytarget = () => {
   // const day = useSelector(getArabicDate);
@@ -83,6 +83,10 @@ const Dailytarget = () => {
       // console.log('screen:daily target: get todolist data: ', data.items);
       // setTask(data.items);
       // }
+      (async () => {
+        const savedTasks = await getLocalCache('todo');
+        setTask(JSON.parse(savedTasks));
+      })();
     } catch (issue) {
       console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
     }
