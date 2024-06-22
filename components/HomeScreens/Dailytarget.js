@@ -75,14 +75,6 @@ const Dailytarget = () => {
 
   useEffect(() => {
     try {
-      // if (isError) {
-      //   console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
-      //   console.error('SCREEN:DAILY TARGET: get todolist error: ', error.date);
-      // }
-      // if (!isLoading && data) {
-      // console.log('screen:daily target: get todolist data: ', data.items);
-      // setTask(data.items);
-      // }
       (async () => {
         const savedTasks = await getLocalCache('todo');
         setTask(JSON.parse(savedTasks));
@@ -90,17 +82,11 @@ const Dailytarget = () => {
     } catch (issue) {
       console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
     }
-    // }, [isLoading, isError]);
-  }, []);
-
-  // const [addTodo] = useAddTodoMutation();
-  // const [updateTodo] = useUpdateTodoMutation();
+  }, [task]);
 
   const taskTitleRef = useRef(null);
   const taskDetailsRef = useRef(null);
-  // const [taskTitle, setTaskTitle] = useState(second)
   const [task, setTask] = useState([]);
-
   const [alarmString, setAlarmString] = useState('');
 
   const handleSubmit = async () => {
@@ -139,14 +125,6 @@ const Dailytarget = () => {
     taskDetailsRef.current.value = '';
     taskDetailsRef.current.clear();
     setAlarmString('');
-
-    //! todo: queue and try-catch
-    // const response = await addTodo({
-    //   value: newTask,
-    // year: parseInt(day.year, 10),
-    // month: parseInt(day.monthNumber, 10),
-    // day: parseInt(day.day, 10),
-    // });
   };
 
   const handleTaskCompletion = (idx, taskID) => {
