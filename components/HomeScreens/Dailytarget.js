@@ -91,23 +91,34 @@ const Dailytarget = () => {
   // const [addTodo] = useAddTodoMutation();
   // const [updateTodo] = useUpdateTodoMutation();
 
-  const taskRef = useRef(null);
+  const taskTitleRef = useRef(null);
+  const taskDetailsRef = useRef(null);
+  // const [taskTitle, setTaskTitle] = useState(second)
   const [task, setTask] = useState([]);
 
+  const [alarmString, setAlarmString] = useState('');
+
   const handleSubmit = async () => {
-    const newTask = taskRef.current.value.trim();
+    const newTaskTitle = taskTitleRef.current.value.trim();
+    const newTaskDetails = taskDetailsRef.current.value.trim();
 
     // reset input field
-    if (newTask === '') {
-      taskRef.current.clear();
+    if (newTaskTitle === '') {
+      taskTitleRef.current.clear();
+      taskDetailsRef.current.clear();
       return;
     }
 
-    setTask(prevTask => [...prevTask, {name: newTask, is_completed: false}]);
+    setTask(prevTask => [
+      ...prevTask,
+      {is_completed: false, name: newTaskTitle, details: newTaskDetails},
+    ]);
 
     // reset input field
-    taskRef.current.value = '';
-    taskRef.current.clear();
+    taskTitleRef.current.value = '';
+    taskTitleRef.current.clear();
+    taskDetailsRef.current.value = '';
+    taskDetailsRef.current.clear();
 
     //! todo: queue and try-catch
     // const response = await addTodo({
@@ -166,6 +177,7 @@ const Dailytarget = () => {
           handleTaskCompletion={handleTaskCompletion}
           handleTaskDeletion={handleTaskDeletion}
           handleTaskEdit={handleTaskEdit}
+          alarmString={alarmString}
         />
 
         {/* <Input
@@ -197,10 +209,13 @@ const Dailytarget = () => {
 
         <View style={{flex: 0.1}}>
           <TaskInputModal
-            taskRef={taskRef}
+            taskTitleRef={taskTitleRef}
+            taskDetailsRef={taskDetailsRef}
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
             handleSubmit={handleSubmit}
+            alarmString={alarmString}
+            setAlarmString={setAlarmString}
           />
         </View>
       </View>

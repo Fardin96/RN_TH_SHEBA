@@ -26,6 +26,7 @@ import {colors} from './assets/colors/colors';
 import {API_URL} from '@env';
 // functions
 import {getAuthToken} from './redux-toolkit/features/authentication/authToken';
+import TimePickerView from './components/HomeScreens/DailyTarget/TimePicker/TimePickerView';
 
 const Stack = createNativeStackNavigator();
 
@@ -126,7 +127,7 @@ const App = () => {
 
     // <NavigationContainer>
     //   <Provider store={store}>
-    //     <ChangePassword />
+    //     <TimePickerView />
     //   </Provider>
     // </NavigationContainer>
   );

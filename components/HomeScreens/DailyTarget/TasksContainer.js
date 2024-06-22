@@ -10,6 +10,7 @@ const TasksContainer = ({
   handleTaskCompletion,
   handleTaskDeletion,
   handleTaskEdit,
+  alarmString,
 }) => {
   // todo: replace all onPress to regular functions instead of arrow functions. r&d about the scoping issue?
   return (
@@ -33,6 +34,7 @@ const TasksContainer = ({
               handleTaskCompletion={handleTaskCompletion}
               handleTaskDeletion={handleTaskDeletion}
               handleTaskEdit={handleTaskEdit}
+              alarmString={alarmString}
             />
           );
         })

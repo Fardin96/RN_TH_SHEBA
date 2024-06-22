@@ -12,6 +12,7 @@ const TaskInput = ({
   complete,
   handleTaskDeletion,
   handleEditPress,
+  alarmString,
 }) => {
   const styles = StyleSheet.create({
     taskBox: {
@@ -55,7 +56,7 @@ const TaskInput = ({
           {/* {idx + 1} */}
           {name}
         </Text>
-        <Text style={styles.textTime}>{'Due @11.39PM'}</Text>
+        <Text style={styles.textTime}>{`Due @${alarmString}`}</Text>
       </View>
 
       <TouchableOpacity

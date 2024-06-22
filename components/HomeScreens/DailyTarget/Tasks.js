@@ -16,6 +16,7 @@ const Tasks = ({
   handleTaskDeletion,
   handleTaskEdit,
   taskID,
+  alarmString,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const handleEditPress = () => {
@@ -71,6 +72,7 @@ const Tasks = ({
             complete={complete}
             handleTaskDeletion={handleTaskDeletion}
             handleEditPress={handleEditPress}
+            alarmString={alarmString}
           />
         </>
       )}
