@@ -92,8 +92,8 @@ const Dailytarget = () => {
     }
 
     const newTask = {
-      id: task.length
-        ? task.reduce((acc, cur) => {
+      id: task?.length
+        ? task?.reduce((acc, cur) => {
             if (cur.id > acc.id) return cur;
             return acc;
           }).id + 1
@@ -104,9 +104,13 @@ const Dailytarget = () => {
       alarm: newAlarmString,
     };
 
-    setTask(prevTask => [...prevTask, newTask]);
-
-    setLocalCache('todo', JSON.stringify([...task, newTask]));
+    if (task?.length) {
+      setTask(prevTask => [...prevTask, newTask]);
+      setLocalCache('todo', JSON.stringify([...task, newTask]));
+    } else {
+      setTask([newTask]);
+      setLocalCache('todo', JSON.stringify([newTask]));
+    }
 
     // reset input field
     taskTitleRef.current.value = '';

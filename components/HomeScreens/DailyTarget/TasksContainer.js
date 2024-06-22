@@ -17,7 +17,10 @@ const TasksContainer = ({
     <ScrollView
       contentContainerStyle={styles.tasklist}
       showsVerticalScrollIndicator={false}>
-      {typeof task === 'undefined' || task === null || task.length === 0 ? (
+      {typeof task === 'undefined' ||
+      task === null ||
+      task.length === 0 ||
+      task === undefined ? (
         <View style={{padding: convert(30)}}>
           <Text style={styles.empty}>No tasks :(</Text>
         </View>

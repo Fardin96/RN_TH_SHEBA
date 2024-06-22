@@ -32,14 +32,10 @@ const TaskInput = ({
       fontSize: convert(40),
       textDecorationLine: complete ? 'line-through' : null,
       color: colors.dark.CONTRAST,
-      // fontSize: FontSize.medium,
-      // fontFamily: 'Montserrat-SemiBold',
     },
     textTime: {
       textDecorationLine: complete ? 'line-through' : null,
       color: colors.dark.CONTRAST,
-      // fontSize: FontSize.medium,
-      // fontFamily: 'Montserrat-SemiBold',
     },
     delete: {
       height: convert(100),
@@ -62,10 +58,9 @@ const TaskInput = ({
         <Text style={styles.textTime}>{`Due @${alarmString}`}</Text>
       </View>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.delete}
         onPress={() => {
-          // handleEditPress();
           navigation.navigate('TaskDetails', {
             id: idx,
             name: name,
@@ -75,7 +70,7 @@ const TaskInput = ({
           });
         }}>
         <Icon name="pencil" size={30} color="blue" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.delete}

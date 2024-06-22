@@ -34,7 +34,6 @@ const Tasks = ({
       borderRadius: convert(25),
       borderColor: colors.dark.CONTRAST,
 
-      // paddingBottom: lastItem ? convert(150) : 0,
       // borderWidth: 1,
     },
     smallBox: {

@@ -2,11 +2,7 @@ import React, {useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {colors} from '../../../assets/colors/colors';
-import {
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-  convert,
-} from '../../../assets/dimensions/dimensions';
+import {SCREEN_WIDTH, convert} from '../../../assets/dimensions/dimensions';
 import TimePickerView from './TimePicker/TimePickerView';
 
 const TaskInputModal = ({
@@ -18,64 +14,64 @@ const TaskInputModal = ({
   alarmString,
   setAlarmString,
 }) => {
+  const addTaskHandler = () => {
+    if (
+      taskTitleRef.current.value === '' ||
+      taskTitleRef.current.value === undefined ||
+      taskDetailsRef.current.value === '' ||
+      taskDetailsRef.current.value === undefined
+    ) {
+      return;
+    }
+
+    handleSubmit();
+    setModalVisible(!modalVisible);
+  };
+
   return (
-    <View
-    // style={styles.root}
-    >
+    <View>
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          //   Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.root}>
           <View style={styles.modalView}>
-            <Input
+            {/* <Input
               ref={taskTitleRef}
               maxLength={40}
               onChangeText={e => (taskTitleRef.current.value = e)}
               placeholder="Image"
-              // errorStyle={styles.error}
-              // errorMessage={errorMessage ? errorMessage : ''}
               inputContainerStyle={{
                 backgroundColor: colors.dark.PRIMARY,
+                borderWidth: 1,
+                borderColor: 'grey',
               }}
-              inputStyle={{
-                color: colors.dark.CONTRAST,
-              }}
-            />
+              inputStyle={
+                {
+                  // color: colors.dark.CONTRAST,
+                }
+              }
+            /> */}
 
             <Input
               ref={taskTitleRef}
               maxLength={40}
               onChangeText={e => (taskTitleRef.current.value = e)}
               placeholder="Task Title"
-              // errorStyle={styles.error}
-              // errorMessage={errorMessage ? errorMessage : ''}
               inputContainerStyle={{
                 backgroundColor: colors.dark.PRIMARY,
+                borderWidth: 1,
+                borderColor: 'grey',
               }}
-              inputStyle={{
-                color: colors.dark.CONTRAST,
-              }}
+              inputStyle={
+                {
+                  // color: colors.dark.CONTRAST,
+                }
+              }
             />
-
-            {/* <Input
-              ref={taskRef}
-              maxLength={40}
-              onChangeText={e => (taskRef.current.value = e)}
-              placeholder="Due time"
-              // errorStyle={styles.error}
-              // errorMessage={errorMessage ? errorMessage : ''}
-              inputContainerStyle={{
-                backgroundColor: colors.dark.PRIMARY,
-              }}
-              inputStyle={{
-                color: colors.dark.CONTRAST,
-              }}
-            /> */}
 
             <Input
               ref={taskDetailsRef}
@@ -83,56 +79,23 @@ const TaskInputModal = ({
               multiline={true}
               onChangeText={e => (taskDetailsRef.current.value = e)}
               placeholder="Details"
-              // errorStyle={styles.error}
-              // errorMessage={errorMessage ? errorMessage : ''}
               inputContainerStyle={{
                 backgroundColor: colors.dark.PRIMARY,
+                borderWidth: 1,
+                borderColor: 'grey',
                 height: convert(300),
               }}
-              inputStyle={{
-                color: colors.dark.CONTRAST,
-              }}
-            />
-
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-                console.log('taskRef.current.value: ', taskRef.current.value);
-                if (
-                  taskRef.current.value === '' ||
-                  taskRef.current.value === undefined
-                ) {
-                  return;
+              inputStyle={
+                {
+                  // color: colors.dark.CONTRAST,
                 }
-
-                handleSubmit();
-                setModalVisible(!modalVisible);
-              }}>
-              <Text style={styles.textStyle}>ADD TIME</Text>
-            </Pressable> */}
+              }
+            />
 
             <TimePickerView
               alarmString={alarmString}
               setAlarmString={setAlarmString}
             />
-
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              // style={styles.btn}
-              onPress={() => {
-                console.log('taskRef.current.value: ', taskRef.current.value);
-                if (
-                  taskRef.current.value === '' ||
-                  taskRef.current.value === undefined
-                ) {
-                  return;
-                }
-
-                handleSubmit();
-                setModalVisible(!modalVisible);
-              }}>
-              <Text style={styles.textStyle}>Done!</Text>
-            </Pressable> */}
 
             <Button
               title={'DONE !'}
@@ -141,20 +104,7 @@ const TaskInputModal = ({
               buttonStyle={styles.btn.buttonStyle}
               titleStyle={styles.btn.titleStyle}
               containerStyle={styles.btn.containerStyle}
-              onPress={() => {
-                // console.log('taskRef.current.value: ', taskRef.current.value);
-                if (
-                  taskTitleRef.current.value === '' ||
-                  taskTitleRef.current.value === undefined ||
-                  taskDetailsRef.current.value === '' ||
-                  taskDetailsRef.current.value === undefined
-                ) {
-                  return;
-                }
-
-                handleSubmit();
-                setModalVisible(!modalVisible);
-              }}
+              onPress={addTaskHandler}
             />
 
             <Button
@@ -165,15 +115,6 @@ const TaskInputModal = ({
               titleStyle={styles.btn.titleStyle}
               containerStyle={styles.btn.containerStyle}
               onPress={() => {
-                // console.log('taskRef.current.value: ', taskRef.current.value);
-                // if (
-                //   taskRef.current.value === '' ||
-                //   taskRef.current.value === undefined
-                // ) {
-                //   return;
-                // }
-
-                // handleSubmit();
                 setModalVisible(!modalVisible);
               }}
             />
@@ -189,7 +130,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginTop: 22,
     backgroundColor: 'rgba(255,255,355,0.7)',
 
     // borderWidth: 1,
@@ -197,11 +137,10 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: SCREEN_WIDTH - 100,
-    // height: SCREEN_HEIGHT,
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: convert(50),
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -211,6 +150,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    backgroundColor: colors.dark.PRIMARY,
   },
   button: {
     borderRadius: 20,
@@ -247,16 +187,10 @@ const styles = StyleSheet.create({
     },
     titleStyle: {fontFamily: 'Montserrat-SemiBold', color: colors.dark.WHITE},
     containerStyle: {
-      // flex: 0.9,
-      // marginHorizontal: 50,
-      // height: 50,
-      // width: 200,
-      // marginVertical: 10,
       marginTop: convert(30),
     },
     cancelBtn: {
       backgroundColor: 'red',
-      // marginTop: null,
     },
   },
 });

@@ -248,7 +248,7 @@ const AuthenticationForm = ({
         )}
 
         <CustomTextInput
-          defaultValue="fardinshuvro96@gmail.co"
+          // defaultValue="fardinshuvro96@gmail.co"
           refProp={emailRef}
           placeholder="Email"
           errorStyle={styles.error}
@@ -257,7 +257,7 @@ const AuthenticationForm = ({
         />
 
         <CustomTextInput
-          defaultValue="something1"
+          // defaultValue="something1"
           refProp={passwordRef}
           hidden={hidden}
           rightIcon={true}

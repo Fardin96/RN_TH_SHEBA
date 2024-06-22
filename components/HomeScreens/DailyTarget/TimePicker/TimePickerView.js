@@ -2,13 +2,9 @@ import {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {TimerPickerModal} from 'react-native-timer-picker';
 import {formatTime} from '../../../../functions/FormatTime/FormatTime';
-// import { LinearGradient } from "expo-linear-gradient"; // or `import LinearGradient from "react-native-linear-gradient"`
-// import { Audio } from "expo-av"; // for audio feedback (click sound as you scroll)
-// import * as Haptics from "expo-haptics"; // for haptic feedback
 
 const TimePickerView = ({alarmString, setAlarmString}) => {
   const [showPicker, setShowPicker] = useState(false);
-  // const [alarmString, setAlarmString] = useState('');
 
   return (
     <View
@@ -17,16 +13,10 @@ const TimePickerView = ({alarmString, setAlarmString}) => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      {/* <Text style={{fontSize: 18, color: 'black'}}>
-        {alarmString !== '' ? 'Alarm set for' : 'No alarm set'}
-      </Text> */}
-
       <TouchableOpacity activeOpacity={0.7} onPress={() => setShowPicker(true)}>
         <View style={{alignItems: 'center'}}>
           {alarmString !== null ? (
-            <View
-            // style={{borderWidth: 1, borderColor: 'blue'}}
-            >
+            <View>
               <Text style={{color: 'black', fontSize: 30}}>{alarmString}</Text>
             </View>
           ) : null}
@@ -34,9 +24,7 @@ const TimePickerView = ({alarmString, setAlarmString}) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => setShowPicker(true)}>
-            <View
-            // style={{marginTop: 30}}
-            >
+            <View>
               <Text
                 style={{
                   paddingVertical: 10,
@@ -66,9 +54,6 @@ const TimePickerView = ({alarmString, setAlarmString}) => {
         modalTitle="Set Alarm"
         onCancel={() => setShowPicker(false)}
         closeOnOverlayPress
-        // Audio={Audio}
-        // LinearGradient={LinearGradient}
-        // Haptics={Haptics}
         styles={{
           theme: 'dark',
         }}
