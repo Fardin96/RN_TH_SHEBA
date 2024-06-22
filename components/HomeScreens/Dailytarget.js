@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
       width: convert(890),
       marginBottom: convert(41),
       borderRadius: convert(25),
-      backgroundColor: colors.dark.CONTRAST,
+      backgroundColor: colors.dark.ACCENT,
 
       // borderWidth: convert(10),
       // borderColor: colors.dark.ACCENT,
