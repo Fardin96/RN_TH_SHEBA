@@ -64,6 +64,7 @@ const TaskInputModal = ({
               inputContainerStyle={{
                 backgroundColor: colors.dark.PRIMARY,
                 borderWidth: 1,
+                borderRadius: convert(30),
                 borderColor: 'grey',
               }}
               inputStyle={
@@ -83,6 +84,7 @@ const TaskInputModal = ({
                 backgroundColor: colors.dark.PRIMARY,
                 borderWidth: 1,
                 borderColor: 'grey',
+                borderRadius: convert(30),
                 height: convert(300),
               }}
               inputStyle={
@@ -112,8 +114,8 @@ const TaskInputModal = ({
               loading={false}
               loadingProps={{size: 'small', color: colors.dark.WHITE}}
               buttonStyle={[styles.btn.buttonStyle, styles.btn.cancelBtn]}
-              titleStyle={styles.btn.titleStyle}
-              containerStyle={styles.btn.containerStyle}
+              titleStyle={{color: 'black'}}
+              containerStyle={{}}
               onPress={() => {
                 setModalVisible(!modalVisible);
               }}
@@ -178,9 +180,9 @@ const styles = StyleSheet.create({
     buttonStyle: {
       height: convert(100),
       width: convert(500),
-      marginBottom: convert(41),
+      marginBottom: convert(20),
       borderRadius: convert(25),
-      backgroundColor: colors.dark.CONTRAST,
+      backgroundColor: colors.dark.ACCENT,
 
       // borderWidth: convert(10),
       // borderColor: colors.dark.ACCENT,
@@ -190,7 +192,10 @@ const styles = StyleSheet.create({
       marginTop: convert(30),
     },
     cancelBtn: {
-      backgroundColor: 'red',
+      // backgroundColor: 'red',
+      backgroundColor: colors.dark.PRIMARY,
+      // borderWidth: 1,
+      // borderColor: 'black',
     },
   },
 });
