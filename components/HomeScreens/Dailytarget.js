@@ -101,17 +101,24 @@ const Dailytarget = () => {
   const handleSubmit = async () => {
     const newTaskTitle = taskTitleRef.current.value.trim();
     const newTaskDetails = taskDetailsRef.current.value.trim();
+    const newAlarmString = alarmString;
 
     // reset input field
     if (newTaskTitle === '') {
       taskTitleRef.current.clear();
       taskDetailsRef.current.clear();
+      setAlarmString('');
       return;
     }
 
     setTask(prevTask => [
       ...prevTask,
-      {is_completed: false, name: newTaskTitle, details: newTaskDetails},
+      {
+        is_completed: false,
+        name: newTaskTitle,
+        details: newTaskDetails,
+        alarm: newAlarmString,
+      },
     ]);
 
     // reset input field
@@ -119,6 +126,7 @@ const Dailytarget = () => {
     taskTitleRef.current.clear();
     taskDetailsRef.current.value = '';
     taskDetailsRef.current.clear();
+    setAlarmString('');
 
     //! todo: queue and try-catch
     // const response = await addTodo({

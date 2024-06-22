@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // assets
 // impoFontSizert {FontSize} from '../../../assets/fonts/fonts';
-import {convert, convertH} from '../../../assets/dimensions/dimensions';
+import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 
 const TaskInput = ({

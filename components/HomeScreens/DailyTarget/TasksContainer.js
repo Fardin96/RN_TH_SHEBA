@@ -34,7 +34,7 @@ const TasksContainer = ({
               handleTaskCompletion={handleTaskCompletion}
               handleTaskDeletion={handleTaskDeletion}
               handleTaskEdit={handleTaskEdit}
-              alarmString={alarmString}
+              alarmString={i.alarm}
             />
           );
         })
