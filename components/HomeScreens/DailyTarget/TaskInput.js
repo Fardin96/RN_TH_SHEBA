@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useNavigation} from '@react-navigation/native';
 // assets
 // impoFontSizert {FontSize} from '../../../assets/fonts/fonts';
 import {convert} from '../../../assets/dimensions/dimensions';
@@ -14,6 +15,8 @@ const TaskInput = ({
   handleEditPress,
   alarmString,
 }) => {
+  const navigation = useNavigation();
+
   const styles = StyleSheet.create({
     taskBox: {
       flex: 1,
@@ -63,6 +66,13 @@ const TaskInput = ({
         style={styles.delete}
         onPress={() => {
           // handleEditPress();
+          navigation.navigate('TaskDetails', {
+            id: idx,
+            name: name,
+            details: '',
+            complete: 'false',
+            alarmString: alarmString,
+          });
         }}>
         <Icon name="pencil" size={30} color="blue" />
       </TouchableOpacity>

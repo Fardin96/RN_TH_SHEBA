@@ -15,11 +15,11 @@ export const authTokenSlice = createSlice({
   reducers: {
     setAuthToken: (state, action) => {
       state.value = action.payload;
-      setLocalCache(state.value);
+      setLocalCache('auth-token', state.value);
     },
     resetToken: state => {
       state.value = '';
-      remLocalCache();
+      remLocalCache('auth-token');
     },
   },
 });
@@ -28,7 +28,7 @@ export const {setAuthToken, resetToken} = authTokenSlice.actions;
 
 export const getAuthToken = state => {
   return new Promise(async (resolve, reject) => {
-    const cachedToken = await getLocalCache();
+    const cachedToken = await getLocalCache('auth-token');
 
     if (cachedToken) {
       resolve(cachedToken);

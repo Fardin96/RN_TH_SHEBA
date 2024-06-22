@@ -27,6 +27,7 @@ import {API_URL} from '@env';
 // functions
 import {getAuthToken} from './redux-toolkit/features/authentication/authToken';
 import TimePickerView from './components/HomeScreens/DailyTarget/TimePicker/TimePickerView';
+import TaskDetails from './components/HomeScreens/DailyTarget/TaskDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -113,6 +114,18 @@ const App = () => {
           <Stack.Screen
             name="Home"
             component={Home}
+            options={{
+              header: () => (
+                <View style={{backgroundColor: colors.dark.PRIMARY}}>
+                  {/* <CustomHeader /> */}
+                </View>
+              ),
+            }}
+          />
+
+          <Stack.Screen
+            name="TaskDetails"
+            component={TaskDetails}
             options={{
               header: () => (
                 <View style={{backgroundColor: colors.dark.PRIMARY}}>
