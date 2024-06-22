@@ -21,7 +21,15 @@ const TasksContainer = ({
       task === null ||
       task.length === 0 ||
       task === undefined ? (
-        <View style={{padding: convert(30)}}>
+        <View
+          style={{
+            flex: 1,
+            padding: convert(30),
+            // borderWidth: 1,
+            // borderColor: 'blue',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Text style={styles.empty}>No tasks :(</Text>
         </View>
       ) : (
@@ -59,5 +67,6 @@ const styles = StyleSheet.create({
   empty: {
     // fontFamily: 'Montserrat-SemiBold',
     color: 'black',
+    fontSize: convert(50),
   },
 });
