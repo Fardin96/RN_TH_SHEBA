@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // assets
-import {FontSize} from '../../../assets/fonts/fonts';
-import {convert} from '../../../assets/dimensions/dimensions';
+// impoFontSizert {FontSize} from '../../../assets/fonts/fonts';
+import {convert, convertH} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 
 const TaskInput = ({
@@ -22,12 +22,20 @@ const TaskInput = ({
       // borderWidth: 1,
       // borderColor: 'red',
     },
-    txtContainer: {flex: 1},
-    text: {
+    txtContainer: {flex: 1, flexDirection: 'column'},
+    textTitle: {
+      fontWeight: '800',
+      fontSize: convert(40),
       textDecorationLine: complete ? 'line-through' : null,
       color: colors.dark.CONTRAST,
-      fontSize: FontSize.medium,
-      fontFamily: 'Montserrat-SemiBold',
+      // fontSize: FontSize.medium,
+      // fontFamily: 'Montserrat-SemiBold',
+    },
+    textTime: {
+      textDecorationLine: complete ? 'line-through' : null,
+      color: colors.dark.CONTRAST,
+      // fontSize: FontSize.medium,
+      // fontFamily: 'Montserrat-SemiBold',
     },
     delete: {
       height: convert(100),
@@ -43,19 +51,20 @@ const TaskInput = ({
   return (
     <View style={styles.taskBox}>
       <View style={styles.txtContainer}>
-        <Text style={styles.text}>
+        <Text style={styles.textTitle}>
           {/* {idx + 1} */}
           {name}
         </Text>
+        <Text style={styles.textTime}>{'Due @11.39PM'}</Text>
       </View>
 
-      {/* <TouchableOpacity
+      <TouchableOpacity
         style={styles.delete}
         onPress={() => {
-          handleEditPress();
+          // handleEditPress();
         }}>
         <Icon name="pencil" size={30} color="blue" />
-      </TouchableOpacity> */}
+      </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.delete}

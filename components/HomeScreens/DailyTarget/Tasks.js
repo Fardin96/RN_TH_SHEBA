@@ -6,7 +6,7 @@ import TaskInput from './TaskInput';
 import EditTaskInput from './EditTaskInput';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
-import {colors} from '../../../assets/colors/colors';
+import {colors} from '.././../../assets/colors/colors';
 
 const Tasks = ({
   idx,

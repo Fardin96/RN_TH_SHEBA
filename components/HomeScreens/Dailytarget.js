@@ -4,21 +4,23 @@ import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 // rtk-slices
-import {
-  useAddTodoMutation,
-  useGetTodosQuery,
-  useUpdateTodoMutation,
-} from '../../redux-toolkit/features/daily-todolist/daily-todolist-slice';
-import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+// import {
+//   useAddTodoMutation,
+//   useGetTodosQuery,
+//   useUpdateTodoMutation,
+// } from '../../redux-toolkit/features/daily-todolist/daily-todolist-slice';
+// import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
 // assets
 import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/fonts/fonts';
-import {convert} from '../../assets/dimensions/dimensions';
+// import {FontSize} from '../../assets/fonts/fonts';
+import {SCREEN_HEIGHT, convert} from '../../assets/dimensions/dimensions';
 // components
 import TasksContainer from './DailyTarget/TasksContainer';
+import TaskInputModal from './DailyTarget/TaskInputModal';
 
 const Dailytarget = () => {
-  const day = useSelector(getArabicDate);
+  // const day = useSelector(getArabicDate);
+  const [modalVisible, setModalVisible] = useState(false);
 
   //* handeling race conditions with queue
   const stateUpdateQueue = useRef([]);
@@ -42,9 +44,9 @@ const Dailytarget = () => {
         const response = await updateTodo({
           id: taskID,
           value: newValue,
-          year: parseInt(day.year, 10),
-          month: parseInt(day.monthNumber, 10),
-          day: parseInt(day.day, 10),
+          // year: parseInt(day.year, 10),
+          // month: parseInt(day.monthNumber, 10),
+          // day: parseInt(day.day, 10),
         });
 
         // console.log('TODO LIST TRACKER RACE QUEUE: response: ', response);
@@ -59,16 +61,16 @@ const Dailytarget = () => {
     setProcessingQueue(false);
   };
 
-  const {
-    data = {},
-    error,
-    isError,
-    isLoading,
-  } = useGetTodosQuery({
-    year: parseInt(day.year, 10),
-    month: parseInt(day.monthNumber, 10),
-    day: parseInt(day.day, 10),
-  });
+  // const {
+  //   data = {},
+  //   error,
+  //   isError,
+  //   isLoading,
+  // } = useGetTodosQuery({
+  //   // year: parseInt(day.year, 10),
+  //   // month: parseInt(day.monthNumber, 10),
+  //   // day: parseInt(day.day, 10),
+  // });
 
   useEffect(() => {
     try {
@@ -76,27 +78,27 @@ const Dailytarget = () => {
       //   console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
       //   console.error('SCREEN:DAILY TARGET: get todolist error: ', error.date);
       // }
-
-      if (!isLoading && data) {
-        // console.log('screen:daily target: get todolist data: ', data.items);
-        setTask(data.items);
-      }
+      // if (!isLoading && data) {
+      // console.log('screen:daily target: get todolist data: ', data.items);
+      // setTask(data.items);
+      // }
     } catch (issue) {
       console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
     }
-  }, [isLoading, isError]);
+    // }, [isLoading, isError]);
+  }, []);
 
-  const [addTodo] = useAddTodoMutation();
-  const [updateTodo] = useUpdateTodoMutation();
+  // const [addTodo] = useAddTodoMutation();
+  // const [updateTodo] = useUpdateTodoMutation();
 
   const taskRef = useRef(null);
   const [task, setTask] = useState([]);
 
   const handleSubmit = async () => {
-    const newTask = taskRef.current.value;
+    const newTask = taskRef.current.value.trim();
 
+    // reset input field
     if (newTask === '') {
-      // reset input field
       taskRef.current.clear();
       return;
     }
@@ -108,12 +110,12 @@ const Dailytarget = () => {
     taskRef.current.clear();
 
     //! todo: queue and try-catch
-    const response = await addTodo({
-      value: newTask,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    // const response = await addTodo({
+    //   value: newTask,
+    // year: parseInt(day.year, 10),
+    // month: parseInt(day.monthNumber, 10),
+    // day: parseInt(day.day, 10),
+    // });
   };
 
   const handleTaskCompletion = (idx, taskID) => {
@@ -166,7 +168,7 @@ const Dailytarget = () => {
           handleTaskEdit={handleTaskEdit}
         />
 
-        <Input
+        {/* <Input
           ref={taskRef}
           maxLength={40}
           onChangeText={e => (taskRef.current.value = e)}
@@ -179,18 +181,29 @@ const Dailytarget = () => {
           inputStyle={{
             color: colors.dark.CONTRAST,
           }}
-        />
+        /> */}
       </View>
 
-      <Button
-        title={'+ ADD TASK'}
-        loading={false}
-        loadingProps={{size: 'small', color: colors.dark.WHITE}}
-        buttonStyle={styles.btn.buttonStyle}
-        titleStyle={styles.btn.titleStyle}
-        containerStyle={styles.btn.containerStyle}
-        onPress={handleSubmit}
-      />
+      <View style={{flex: 1}}>
+        <Button
+          title={'+ ADD TASK'}
+          loading={false}
+          loadingProps={{size: 'small', color: colors.dark.WHITE}}
+          buttonStyle={styles.btn.buttonStyle}
+          titleStyle={styles.btn.titleStyle}
+          containerStyle={styles.btn.containerStyle}
+          onPress={() => setModalVisible(true)}
+        />
+
+        <View style={{flex: 0.1}}>
+          <TaskInputModal
+            taskRef={taskRef}
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+            handleSubmit={handleSubmit}
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -199,7 +212,7 @@ export default Dailytarget;
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
+    flex: 10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.dark.PRIMARY,
@@ -210,9 +223,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'red',
   },
-  empty: {fontSize: FontSize.btnTitle, color: 'black'},
+  empty: {
+    // fontSize: FontSize.btnTitle,
+    color: 'black',
+  },
   taskContainer: {
-    flex: 1,
+    flex: 9,
     width: convert(1000),
     alignItems: 'center',
 
@@ -223,7 +239,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'blue',
   },
-  task: {color: 'black', fontSize: FontSize.btnTitle},
+  task: {
+    color: 'black',
+    // fontSize: FontSize.btnTitle
+  },
   btn: {
     buttonStyle: {
       height: convert(100),
@@ -235,8 +254,9 @@ const styles = StyleSheet.create({
       // borderWidth: convert(10),
       // borderColor: colors.dark.ACCENT,
     },
-    titleStyle: {fontFamily: 'Montserrat-SemiBold', color: colors.dark.PRIMARY},
+    titleStyle: {fontFamily: 'Montserrat-SemiBold', color: colors.dark.WHITE},
     containerStyle: {
+      flex: 0.9,
       // marginHorizontal: 50,
       // height: 50,
       // width: 200,
